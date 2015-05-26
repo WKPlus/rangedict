@@ -1,11 +1,13 @@
 
+__all__ = ['RangeDict']
+
 class Color(object):
     BLACK = 0
     RED = 1
 
 
 class Node(object):
-    slots = ('r', 'left', 'right', 'value', 'color', 'parent')
+    __slots__ = ('r', 'left', 'right', 'value', 'color', 'parent')
 
     def __init__(self, r, value, parent=None, color=Color.RED):
         self.r = r
@@ -209,7 +211,6 @@ class RangeDict(dict):
             parent.color = Color.BLACK
             sibling.left.color = Color.RED
             self.right_rotate(parent)
-
 
     def left_rotate(self, node):
         right_son = node.right
