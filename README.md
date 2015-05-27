@@ -6,7 +6,7 @@ rangedict is a dict whose key can be a range.
 ----
 
 ```
-    >>> from rangdict import RangeDict
+    >>> from rangedict import RangeDict
     >>> rd = RangeDict()
     >>> rd[(1, 2)] = 1
     >>> rd[(3, 3)] = 3

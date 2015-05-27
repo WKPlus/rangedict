@@ -11,7 +11,7 @@ rangedict is a dict whose key is a range.
 Usage
 -----
 
-    >>> from rangdict import RangeDict
+    >>> from rangedict import RangeDict
     >>> rd = RangeDict()
     >>> rd[(1, 2)] = 1
     >>> rd[(3, 3)] = 3
