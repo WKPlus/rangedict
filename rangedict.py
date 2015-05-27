@@ -1,6 +1,7 @@
 
 __all__ = ['RangeDict']
 
+
 class Color(object):
     BLACK = 0
     RED = 1
@@ -59,7 +60,7 @@ class RangeDict(dict):
         if node.parent.color == Color.BLACK:
             return
         uncle = self.sibling(node.parent)
-        if self.node_color(uncle) == Color.RED:
+        if node_color(uncle) == Color.RED:
             node.parent.color = Color.BLACK
             uncle.color = Color.BLACK
             node.parent.parent.color = Color.RED
@@ -137,25 +138,33 @@ class RangeDict(dict):
         if not node.parent:  # node is root
             self._root = child
             if self._root:
+                self._root.parent = None
                 self._root.color = Color.BLACK
             return
 
         parent = node.parent
         if not child:
             child = Node(None, None, parent, Color.BLACK)
-        child.parent = parent
         if self.is_left_son(node, parent):
             parent.left = child
         else:
             parent.right = child
+        child.parent = parent
 
         if node.color == Color.RED:
             #no need to adjust when deleting a red node
             return
-        if self.node_color(child) == Color.RED:
+        if node_color(child) == Color.RED:
             child.color = Color.BLACK
             return
         self._delete_adjust(child)
+        if not child.r:
+            #mock a None node for adjust, need to delete it after that
+            parent = child.parent
+            if self.is_left_son(child, parent):
+                parent.left = None
+            else:
+                parent.right = None
 
     def _delete_adjust(self, node):
         if not node.parent:
@@ -164,7 +173,7 @@ class RangeDict(dict):
 
         parent = node.parent
         sibling = self.sibling(node)
-        if self.node_color(sibling) == Color.RED:
+        if node_color(sibling) == Color.RED:
             if self.is_left_son(node, parent):
                 self.left_rotate(parent)
             else:
@@ -242,12 +251,6 @@ class RangeDict(dict):
         left_son.right = node
 
     @staticmethod
-    def node_color(node):
-        if not node:
-            return Color.BLACK
-        return node.color
-
-    @staticmethod
     def sibling(node):
         if node.parent.left == node:
             return node.parent.right
@@ -266,9 +269,16 @@ class RangeDict(dict):
         while node.right:
             node = node.right
         return node
+
     @staticmethod
     def is_black(node):
-        return RangeDict.node_color(node) == Color.BLACK
+        return node_color(node) == Color.BLACK
+
+
+def node_color(node):
+    if not node:
+        return Color.BLACK
+    return node.color
 
 
 def in_order(root):
