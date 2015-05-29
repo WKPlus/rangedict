@@ -3,7 +3,7 @@ try:
 except ImportError:
     from distutils.core import setup
 
-VERSION = '0.1.4'
+VERSION = '0.1.5'
 
 LONG_DESCRIPTION = '''
 rangedict is a dict whose key is a range.
