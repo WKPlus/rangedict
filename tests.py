@@ -32,7 +32,7 @@ def black_height(root):
     lbh = black_height(root.left)
     rbh = black_height(root.right)
     if lbh != rbh:
-        #not a valid red black tree
+        # not a valid red black tree
         return -1
     if root.color == Color.BLACK:
         return lbh + 1
@@ -60,8 +60,8 @@ def is_red_black_tree(root):
     if root.color == Color.RED:
         return False
 
-    #if black_height(root) < 0:
-    #    return False
+    if black_height(root) < 0:
+       return False
 
     if not check_color(root):
         return False
@@ -85,4 +85,3 @@ def test_delete_red_black_tree():
         del rd[(i, i + 1)]
         assert_true(is_red_black_tree(rd._root))
     assert_equal(rd._root, None)
-

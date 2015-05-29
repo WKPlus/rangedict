@@ -24,6 +24,7 @@ class Node(object):
 
 
 class RangeDict(dict):
+
     def __init__(self):
         self._root = None
 
@@ -67,7 +68,7 @@ class RangeDict(dict):
             return self._insert_adjust(node.parent.parent)
 
         #parent is red and uncle is black
-        #since parent is red, grandparent must exists and be black
+        # since parent is red, grandparent must exists and be black
         parent = node.parent
         grandparent = parent.parent
         if self.is_left_son(parent, grandparent):
@@ -133,7 +134,7 @@ class RangeDict(dict):
         self._delete(node)
 
     def _delete(self, node):
-        #node has at most one child
+        # node has at most one child
         child = node.left if node.left else node.right
         if not node.parent:  # node is root
             self._root = child
@@ -152,14 +153,14 @@ class RangeDict(dict):
         child.parent = parent
 
         if node.color == Color.RED:
-            #no need to adjust when deleting a red node
+            # no need to adjust when deleting a red node
             return
         if node_color(child) == Color.RED:
             child.color = Color.BLACK
             return
         self._delete_adjust(child)
         if not child.r:
-            #mock a None node for adjust, need to delete it after that
+            # mock a None node for adjust, need to delete it after that
             parent = child.parent
             if self.is_left_son(child, parent):
                 parent.left = None
@@ -180,9 +181,9 @@ class RangeDict(dict):
                 self.right_rotate(parent)
             parent.color = Color.RED
             sibling.color = Color.BLACK
-            sibling = sibling.left  # must be black
+            sibling = self.sibling(node)  # must be black
 
-        #sibling must be black now
+        # sibling must be black now
         if not self.is_black(parent) and self.is_black(sibling.left) and \
            self.is_black(sibling.right):
             parent.color = Color.BLACK
@@ -202,7 +203,7 @@ class RangeDict(dict):
                 self.right_rotate(sibling)
                 sibling = sibling.parent
 
-            #sibling.right must be red
+            # sibling.right must be red
             sibling.color = parent.color
             parent.color = Color.BLACK
             sibling.right.color = Color.BLACK
@@ -215,7 +216,7 @@ class RangeDict(dict):
                 self.left_rotate(parent)
                 sibling = sibling.parent
 
-            #sibling.left must be red
+            # sibling.left must be red
             sibling.color = parent.color
             parent.color = Color.BLACK
             sibling.left.color = Color.RED
@@ -300,7 +301,7 @@ if __name__ == '__main__':
     print in_order(rd._root)
     print "height:", height(rd._root)
 
-    del rd[(3,4)]
+    del rd[(3, 4)]
 
     print in_order(rd._root)
     print "height:", height(rd._root)
