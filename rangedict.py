@@ -295,13 +295,4 @@ def height(root):
     return 1 + max(height(root.left), height(root.right))
 
 if __name__ == '__main__':
-    rd = RangeDict()
-    for i in xrange(1, 20, 2):
-        rd[(i, i + 1)] = i
-    print in_order(rd._root)
-    print "height:", height(rd._root)
-
-    del rd[(3, 4)]
-
-    print in_order(rd._root)
-    print "height:", height(rd._root)
+    pass
