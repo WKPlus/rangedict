@@ -70,7 +70,7 @@ def is_red_black_tree(root):
 
 def test_insert_red_black_tree():
     rd = RangeDict()
-    for i in xrange(1, 2000, 2):
+    for i in range(1, 2000, 2):
         rd[(i, i + 1)] = i
 
     assert_true(is_red_black_tree(rd._root))
@@ -78,10 +78,10 @@ def test_insert_red_black_tree():
 
 def test_delete_red_black_tree():
     rd = RangeDict()
-    for i in xrange(1, 2000, 2):
+    for i in range(1, 2000, 2):
         rd[(i, i + 1)] = i
 
-    for i in xrange(1, 2000, 2):
+    for i in range(1, 2000, 2):
         del rd[(i, i + 1)]
         assert_true(is_red_black_tree(rd._root))
     assert_equal(rd._root, None)
