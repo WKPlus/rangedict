@@ -1,4 +1,4 @@
-#rangedict [![Build Status](https://travis-ci.org/WKPlus/rangedict.svg?branch=master)](https://travis-ci.org/WKPlus/rangedict)
+#rangedict [![Build Status](https://travis-ci.org/WKPlus/rangedict.svg?branch=master)](https://travis-ci.org/WKPlus/rangedict) [![Coverage Status](https://coveralls.io/repos/WKPlus/rangedict/badge.svg)](https://coveralls.io/r/WKPlus/rangedict)
 
 rangedict is a dict whose key can be a range.
 
