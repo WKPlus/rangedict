@@ -1,5 +1,4 @@
-#rangedict: a dict maps a range to a value
-[![Build Status](https://travis-ci.org/WKPlus/rangedict.svg?branch=master)](https://travis-ci.org/WKPlus/rangedict)
+#rangedict [![Build Status](https://travis-ci.org/WKPlus/rangedict.svg?branch=master)](https://travis-ci.org/WKPlus/rangedict)
 
 rangedict is a dict whose key can be a range.
 
