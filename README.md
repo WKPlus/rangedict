@@ -17,6 +17,7 @@ rangedict is a dict whose key can be a range.
     True
     >>> del rd[(3, 3)]
     >>> 3 in rd
+    False
 ```
 
 Implemented based on red black tree provides an O(logn) complexity for
