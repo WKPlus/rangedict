@@ -81,6 +81,47 @@ class RangeDictTest(unittest.TestCase):
             assert_true(self.is_red_black_tree(rd._root))
         assert_equal(rd._root, None)
 
+    def test_iter_ranges(self):
+        rd = RangeDict()
+        rd[0,10] = 1
+        rd[11,20] = 2
+        rd[21,30] = 3
+
+        expected = [(0,10), (11,20), (21,30)]
+        actual = list(rd.__iter__())
+        assert_equal(actual, expected)
+
+        # keys is an alias
+        actual_keys = list(rd.keys())
+        assert_equal(actual_keys, expected)
+
+    def test_iter_ranges_empty(self):
+        rd = RangeDict()
+
+        expected = []
+        actual = list(rd.__iter__())
+        assert_equal(actual, expected)
+
+    def test_iter_values(self):
+        rd = RangeDict()
+        rd[0,10] = 1
+        rd[11,20] = 2
+        rd[21,30] = 3
+
+        actual = list(rd.values())
+        expected = [1,2,3]
+        assert_equal(actual, expected)
+
+    def test_iter_items(self):
+        rd = RangeDict()
+        rd[0,10] = 1
+        rd[11,20] = 2
+        rd[21,30] = 3
+
+        expected = [((0,10), 1), ((11,20), 2), ((21,30), 3)]
+        actual = list(rd.items())
+        assert_equal(actual, expected)
+
 
 if __name__ == '__main__':
     unittest.main()

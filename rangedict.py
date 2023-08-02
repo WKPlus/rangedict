@@ -167,6 +167,35 @@ class RangeDict(dict):
             else:
                 parent.right = None
 
+    def values(self):
+        return self._values_in_order(self._root)
+
+    def _values_in_order(self, node):
+        if node:
+            yield from self._values_in_order(node.left)
+            yield node.value
+            yield from self._values_in_order(node.right)
+
+    def items(self):
+        return self._items_in_order(self._root)
+
+    def _items_in_order(self, node):
+        if node:
+            yield from self._items_in_order(node.left)
+            yield (node.r, node.value)
+            yield from self._items_in_order(node.right)
+
+    def __iter__(self):
+        return self._in_order(self._root)
+
+    keys = __iter__
+
+    def _in_order(self, node):
+        if node:
+            yield from self._in_order(node.left)
+            yield node.r
+            yield from self._in_order(node.right)
+
     def _delete_adjust(self, node):
         if not node.parent:
             node.color = Color.BLACK
